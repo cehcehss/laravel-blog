@@ -1,0 +1,34 @@
+// Bootstrap overrides for this template
+
+
+.btn-primary {
+    background-color: $primary;
+    border-color: $primary;
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: $white;
+        background-color: darken($primary, 7.5) !important;
+        border-color: darken($primary, 7.5) !important;
+    }
+}
+
+.btn-outline-primary {
+    background-color: $white;
+    border-color: $primary;
+    color: $primary;
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: $white;
+        background-color: darken($primary, 7.5) !important;
+        border-color: darken($primary, 7.5) !important;
+    }
+}
+
+.btn-lg {
+    font-size: 16px;
+    padding: 25px 35px;
+}
