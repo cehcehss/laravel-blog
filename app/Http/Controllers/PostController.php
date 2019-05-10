@@ -7,7 +7,7 @@ use DB;
 class PostController{
     public function index(){
 
-        $posts = Post::with('tags')->paginate(3);
+        $posts = Post::with('tags')->orderBy('created_at', 'desc')->paginate(3);
         $popularPosts = Post::orderBy('count', 'desc')->limit(4)->get();
         // $tags = Tag::pluck('tag');
         $tags = DB::table('post_tag')
