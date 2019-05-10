@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
+use DB;
 class CreatePostsTable extends Migration
 {
     /**
@@ -19,8 +19,8 @@ class CreatePostsTable extends Migration
             $table->string('image')->nullable();
             $table->text('content');
             $table->integer('count')->default(0);
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at');
-            $table->timestamp('created_at');
         });
     }
 
