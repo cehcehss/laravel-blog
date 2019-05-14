@@ -1,15 +1,14 @@
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 ## Blog
-- 使用Laravel+MySQL建置
+- 使用Laravel+MySQL建置部落格
 
-## 後端功能
+## 功能簡介
 - 具管理後台可新增、更新、刪除文章
-- 後台路由需經登入驗證
-
-## 前端特色
-- 顯示文章點閱數及相關標籤
+- 後台路由須經登入驗證
+- 可為文章新增多個標籤
 - 可透過標籤列出相關文章
----
+- 依據文章點閱數顯示熱門文章區塊
+
 ## Demo
-https://drive.google.com/file/d/1IGDvm7K0A-LHdsB_YlHSbmN5phftRxi1/view
+https://drive.google.com/file/d/1qULucXcUA4cBDJhtzaZdJWLvJN7BYJ6K/view
