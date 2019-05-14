@@ -11,6 +11,7 @@
                         <th scope="col">ID</th>
                         <th scope="col">Title</th>
                         <th scope="col">Date</th>
+                        <th scope="col">Preview</th>
                         <th scope="col">Edit</th>
                         <th scope="col">Delete</th>
                     </tr>
@@ -19,8 +20,11 @@
                     @foreach($posts as $post)
                         <tr>
                             <th scope="row">{{$loop->iteration}}</th>
-                            <td>{{$post->title}}</td>
+                            <td> <a href="/posts/{{$post->id}}">{{$post->title}}</a></td>
                             <td>{{$post->created_at}}</td>
+                            <td>
+                                <a href="/posts/{{$post->id}}" class="btn btn-outline-secondary btn-sm"><i class="far fa-eye"></i></a>
+                            </td>
                             <td>
                                 <form action="{{route('admin.post.edit', [$post->id])}}" method="GET">
                                     @csrf

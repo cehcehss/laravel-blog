@@ -18,7 +18,7 @@
 Route::get('/','PostController@index');
 Route::get('/posts/{postId}','PostController@show');
 Route::get('/posts/tags/{tag}','TagController@index');
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
