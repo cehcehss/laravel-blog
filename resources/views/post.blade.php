@@ -13,6 +13,9 @@
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="post-heading">
             <h1>{{$post->title}}</h1>
+            @foreach($post->tags as $tag_obj)
+             <a href="/posts/tags/{{$tag_obj->tag}}" class="badge tag">#{{$tag_obj->tag}}</a>
+            @endforeach
           </div>
         </div>
       </div>

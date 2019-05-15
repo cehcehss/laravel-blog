@@ -21,9 +21,9 @@ class PostController{
     }
 
     public function show($id){
-        $post = Post::find($id);
+        $post = Post::with('tags')->find($id);
         $post->increment('count'); 
-        return view('post',['post'=>$post]);
+        return view('post',compact('post'));
     }
 
 }

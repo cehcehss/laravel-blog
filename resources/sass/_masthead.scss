@@ -69,6 +69,15 @@ header.masthead {
     }
 
     .post-heading {
+
+        .tag {
+            border: 1px solid white;
+            border-radius: 5px;
+            padding: 10px;
+            display: inline-block;
+            color: white;
+        }
+
         h1 {
             font-size: 35px;
         }
