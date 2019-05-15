@@ -11,4 +11,4 @@
 - 依據文章點閱數顯示熱門文章區塊
 
 ## Demo
-https://drive.google.com/file/d/1qULucXcUA4cBDJhtzaZdJWLvJN7BYJ6K/view
+https://drive.google.com/file/d/1GGmaVQZdmRDzhuxSxVLtIqM-36CVBuhj/view
