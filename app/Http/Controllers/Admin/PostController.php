@@ -11,8 +11,14 @@ use Alert;
 
 class PostController extends Controller
 {
+    protected $post;
+
+    public function __construct(){
+        $this->post = new Post;
+    }
+
     public function index(){
-        $posts = Post::all();
+        $posts = $this->post->getAllPosts();
         return view('admin.posts.allPosts',['posts'=>$posts]);
     }
 

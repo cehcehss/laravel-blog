@@ -23,11 +23,11 @@ Auth::routes(['register' => false]);
 Route::get('/home', 'HomeController@index')->name('home');
 
 // 後台
-Route::prefix('admin')->middleware('auth')->group(function (){
-    Route::get('post', 'Admin\PostController@index')->name('admin.posts');
-    Route::get('post/create', 'Admin\PostController@create')->name('admin.post.create');
-    Route::post('post', 'Admin\PostController@store');
-    Route::delete('post/{post}', 'Admin\PostController@delete')->name('admin.post.delete');
-    Route::get('post/edit/{id}','Admin\PostController@edit')->name('admin.post.edit');
-    Route::post('post/update/{id}','Admin\PostController@update')->name('admin.post.update');
+Route::prefix('admin/post')->middleware('auth')->group(function (){
+    Route::get('/', 'Admin\PostController@index')->name('admin.posts');
+    Route::get('/create', 'Admin\PostController@create')->name('admin.post.create');
+    Route::post('/', 'Admin\PostController@store');
+    Route::delete('/{post}', 'Admin\PostController@delete')->name('admin.post.delete');
+    Route::get('/edit/{id}','Admin\PostController@edit')->name('admin.post.edit');
+    Route::post('/update/{id}','Admin\PostController@update')->name('admin.post.update');
 });
