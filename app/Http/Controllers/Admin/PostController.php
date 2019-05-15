@@ -42,30 +42,34 @@ class PostController extends Controller
         // checkbox值
         $selected_tags = $request->input('tags');
 
-        $post_tag_data = [];
-        foreach ($selected_tags as $tag_id) {
-            $post_tag_data[] = [
-                'tag_id'  => $tag_id,
-                'post_id'    => $lastId,
-            ];
-        }
+        foreach ($selected_tags as $tags) {
 
-        DB::table('post_tag')->insert($post_tag_data);
+            // 確認此tag是否已存在
+            $tag = Tag::where('id', '=', $tags)->first();
+
+            // 如果存在，同步新增至post_tag表
+            // 否則在tags表新建一個tag
+            if ($tag != null) {
+                $post->tags()->sync($tag->id);
+            } else {
+                $tag = new Tag();
+                $tag->tag = $tags;
+                $tag->save();
+                $post->tags()->sync($tag->id);
+            }
+        }
+        
         Alert::success('新增成功!');
         return redirect('admin/post');
     }
-    /**
-     * 刪除文章
-     *
-     * @param  $id
-     * @return 
-    */
+   
     public function delete($id){
         $post = Post::find($id);
         $post->delete();
         Alert::success('刪除成功!');
         return redirect('admin/post');
     }
+    
     public function edit($id){
         $post = Post::find($id);
         // 所有標籤用來建立input
@@ -79,30 +83,18 @@ class PostController extends Controller
         return view('admin.posts.edit',compact('post','all_tags','tags'));
     }
 
-    public function update(Request $request, $id){
-        
+    public function update(Request $request,$id){
+
         $request->validate([
             'title'=>'required|max:255',
             'content'=>'required'
         ]);
 
-        // post_tag表格 根據文章id 刪除 post_id欄位對應的資料
-        DB::table('post_tag')->where('post_id','=',$id)->delete();
-        // post_id == $id 迴圈新增列數
-        // checkbox值
+        $post = POST::find($id);
+        $post->update(['title'=>$request->title,'image'=>$request->image,'content'=>$request->content]);
         $selected_tags = $request->input('tags');
+        $post->tags()->sync($selected_tags);
 
-        $post_tag_data = [];
-        foreach ($selected_tags as $tag_id) {
-            $post_tag_data[] = [
-                'tag_id'  => $tag_id,
-                'post_id'    => $id,
-            ];
-        }
-
-        DB::table('post_tag')->insert($post_tag_data);
-
-        POST::where('id',$id)->update(['title'=>$request->title,'image'=>$request->image,'content'=>$request->content]);
         Alert::success('更新成功!');
         return redirect('admin/post');
     }
